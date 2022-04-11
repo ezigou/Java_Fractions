@@ -1,0 +1,594 @@
+From: <Saved by Blink>
+Snapshot-Content-Location: https://www.dcs.bbk.ac.uk/~hubie/pop2/web-spr21/project-instructions.html
+Subject: project-instructions
+Date: Mon, 5 Apr 2021 08:08:10 -0000
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----MultipartBoundary--hoizyJvZZwzywjZOjYS60QPyr6Wi09cYq4lvF1NgQ9----"
+
+
+------MultipartBoundary--hoizyJvZZwzywjZOjYS60QPyr6Wi09cYq4lvF1NgQ9----
+Content-Type: text/html
+Content-ID: <frame-11144BDA0F59F2D1C86DA22DB7179949@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://www.dcs.bbk.ac.uk/~hubie/pop2/web-spr21/project-instructions.html
+
+<!DOCTYPE html><html><head><meta http-equiv=3D"Content-Type" content=3D"tex=
+t/html; charset=3DUTF-8"><link rel=3D"stylesheet" type=3D"text/css" href=3D=
+"cid:css-5c9ce6b3-27b9-4d60-b432-9151a8d7392d@mhtml.blink" />
+
+
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1.=
+0, user-scalable=3Dyes">
+<title>project-instructions</title>
+
+
+
+
+
+</head>
+
+<body>
+
+<h1 id=3D"toc_0">Coursework</h1>
+
+<p>Java provides classes for working with several types of numbers, but it =
+does not provide anything for working with fractions. Your task is to imple=
+ment a=20
+Fraction API (<strong>A</strong>pplication <strong>P</strong>rogrammer's <s=
+trong>I</strong>nterface).  You should also write a small program that uses=
+ it.</p>
+
+<h2 id=3D"toc_1">Purposes of this assignment</h2>
+
+<p>The purposes of this assignment include the following:</p>
+
+<ul>
+<li>To give you practice with creating classes.</li>
+<li>To give you practice reading the API.</li>
+<li>To give you more practice with string manipulation.</li>
+<li>To give you practice with unit testing.</li>
+</ul>
+
+<h2 id=3D"toc_2">General idea of the assignment</h2>
+
+<p>You are to implement a Fraction API; in particular, you are to implement=
+ a number of methods in the file FractionImpl.java.</p>
+
+<p>Create a package named <code>fraction</code>. The interface <code>Fracti=
+on</code> and the class <code>FractionImpl</code> will be inside this packa=
+ge.  (Source files from which you can start are provided.)
+You do not need to and should not edit the file Fraction.java at all; this =
+file contains the interface.  This interface can be conceived of as a contr=
+act between the designer/future user of the <code>FractionImpl</code> class=
+ (the course staff!) and the programmer implementing this class (you!).</p>
+
+<p>Note: although you are asked to implement a number of methods, the imple=
+mentations, for the most part, should be quite short. </p>
+
+<h2 id=3D"toc_3">The API</h2>
+
+<p>The following lists some information about your new class.
+As regards implementing the methods, there is no strict requirement on how =
+a method needs to behave wherever the behavior is not specified by the desc=
+ription below; however, in all cases it is suggested that you think about w=
+hat <em>reasonable</em> behavior would be, and attempt to implement it.</p>
+
+<h3 id=3D"toc_4">Instance variables</h3>
+
+<p>The instance variables should consist of
+two <code>private</code> integers, known as the <code>numerator</code> and =
+the <code>denominator</code>.=20
+<strong>Do not</strong> provide public accessors or mutators (getters or se=
+tters) for=20
+these instance variables; there is no reason for anything outside the <code=
+>FractionImpl</code> class to know about them.</p>
+
+<p>Note on access: Even though these instance variables are <code>private</=
+code>, they are private to the <em>class</em>,=20
+not to an object.=20
+This means that any <code>FractionImpl</code> object can access the private=
+ variables of any other <code>FractionImpl</code> object; it's only=20
+outside this class that you cannot access them.</p>
+
+<p>You should obey the following properties/invariants concerning the insta=
+nce variables:</p>
+
+<ul>
+<li><p>Zero should be represented as <code>0/1</code>.</p></li>
+<li><p>The denominator should never be zero.</p></li>
+<li><p>The denominator should never be negative. A negative number for the =
+denominator may be given
+to the constructor to create a fraction, but a negative fraction should be =
+represented <em>internally</em>
+with a negative numerator.</p></li>
+<li><p>The fraction should always be kept in reduced form, that is, the <em=
+>greatest common divisor</em> (GCD)=20
+of the numerator instance variable and the denominator instance variable sh=
+ould be <code>1</code>.  (See the relevant note below.)</p></li>
+</ul>
+
+<h3 id=3D"toc_5">Constructors</h3>
+
+<p>The following lists the constructors you should have.  (Please note that=
+ Java does not allow constructors to=20
+be specified in an <em>interface</em>, hence the use of <code>FractionImpl<=
+/code>.)</p>
+
+<table>
+<thead>
+<tr>
+<th>Constructor</th>
+<th>How it uses its parameters</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>public FractionImpl(int numerator, int denominator)</code></td>
+<td>Parameters are the <em>numerator</em> and the <em>denominator</em>. <st=
+rong>Normalize</strong> the fraction as you create it. For instance, if the=
+ parameters are <code>(8, -12)</code>, create a <code>Fraction</code> with =
+numerator <code>-2</code> and denominator <code>3</code>. The constructor s=
+hould throw an <code>ArithmeticException</code> if the denominator is zero.=
+</td>
+</tr>
+<tr>
+<td><code>public FractionImpl(int wholeNumber)</code></td>
+<td>The parameter is the numerator and <code>1</code> is the implicit denom=
+inator.</td>
+</tr>
+<tr>
+<td><code>public FractionImpl(String fraction)</code></td>
+<td>The parameter is a <code>String</code> containing either a whole number=
+, such as <code>"5"</code> or <code>"-3"</code>, or a fraction, such as <co=
+de>"8/-12"</code>. Allow blanks around (but not within) integers; thus, <co=
+de>"10  /-4"</code> should be handled, but <code>"1 0 / -4"</code>  (where =
+there is a space between the '1' and the '0') need not be.</td>
+</tr>
+</tbody>
+</table>
+
+<p>The constructor should throw an <code>ArithmeticException</code> if give=
+n a string representing a fraction whose denominator is zero.<br><br>You ma=
+y find it helpful to look at the available <a href=3D"https://docs.oracle.c=
+om/javase/9/docs/api/java/lang/String.html"><code>String</code></a> methods=
+ in the <a href=3D"https://docs.oracle.com/javase/9/docs/api/overview-summa=
+ry.html">Java API</a>.</p>
+
+<h5 id=3D"toc_6">Notes:</h5>
+
+<ul>
+<li>Java allows you to have more than one constructor, so long as they have=
+ different numbers or=20
+types of parameters. For example, if you call <code>new FractionImpl(3)</co=
+de> you will get the second constructor=20
+listed above. A <code>String</code> is a string, though, so the third const=
+ructor will have to distinguish=20
+between <code>"3"</code> and <code>"3/4"</code>.</li>
+<li><p>To throw an <code>Exception</code>, write a statement such as:</p>
+
+<div><pre><code class=3D"language-java">throw new ArithmeticException("Divi=
+de by zero"); </code></pre></div>
+
+<p>(The <code>String</code> parameter is optional.)</p></li>
+<li><p>The java method <code>Integer(string).parseInt()</code> will return =
+the <code>int</code> equivalent of the string=20
+(assuming that the string represents a legal integer).
+Malformed input will cause it to throw a <code>NumberFormatException</code>=
+.</p></li>
+</ul>
+
+<h3 id=3D"toc_7">Methods</h3>
+
+<p>The following lists the non-constructor methods that should be implement=
+ed.<br>
+In what follows, <code>this</code> is sometimes denoted by <code>a/b</code>=
+, and an argument <code>f</code> is sometimes denoted by <code>c/d</code>.<=
+/p>
+
+<table>
+<thead>
+<tr>
+<th>Method signature</th>
+<th>What it does</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>public Fraction add(Fraction f)</code></td>
+<td>Returns a new <code>Fraction</code> that is the <strong>sum</strong> of=
+ <code>this</code> and <code>f</code>: <br><br><code>a/b + c/d</code> is <c=
+ode>(ad + bc)/bd</code></td>
+</tr>
+<tr>
+<td><code>public Fraction subtract(Fraction f)</code></td>
+<td>Returns a new <code>Fraction</code> that is the <strong>difference</str=
+ong> of <code>this</code> minus <code>f</code>: <br><br> <code>a/b - c/d</c=
+ode> is <code>(ad - bc)/bd</code></td>
+</tr>
+<tr>
+<td><code>public Fraction multiply(Fraction f)</code></td>
+<td>Returns a new <code>Fraction</code> that is the <strong>product</strong=
+> of <code>this</code> and <code>f</code>:<br><br> <code>(a/b) * (c/d)</cod=
+e> is <code>(a*c)/(b*d)</code></td>
+</tr>
+<tr>
+<td><code>public Fraction divide(Fraction f)</code></td>
+<td>Returns a new <code>Fraction</code> that is the <strong>quotient</stron=
+g> of dividing <code>this</code> by <code>f</code>:<br><br> <code>(a/b) / (=
+c/d)</code> is <code>(a*d)/(b*c)</code></td>
+</tr>
+<tr>
+<td><code>public Fraction abs()</code></td>
+<td>Returns a new <code>Fraction</code> that is the <em>absolute value</em>=
+ of <code>this</code> fraction.</td>
+</tr>
+<tr>
+<td><code>public Fraction negate()</code></td>
+<td>Returns a new <code>Fraction</code> that has the same numeric value of =
+<code>this</code> fraction, but the opposite sign.</td>
+</tr>
+<tr>
+<td><code>public Fraction inverse()</code></td>
+<td>The inverse of <code>a/b</code> is <code>b/a</code>.</td>
+</tr>
+<tr>
+<td><code>@Override</code><br><code>public boolean equals(Object o)</code><=
+/td>
+<td>Returns <code>true</code> if <code>o</code> is a <code>Fraction</code> =
+equal to <code>this</code>, and <code>false</code> in all other cases.</td>
+</tr>
+<tr>
+<td><code>@Override</code><br><code>public int compareTo(Fraction o)</code>=
+</td>
+<td>This method returns:<ul><li>A negative <code>int</code> if <code>this</=
+code> is less than <code>o</code>.</li><li>Zero if <code>this</code> is equ=
+al to <code>o</code>.</li><li>A positive <code>int</code> if <code>this</co=
+de> is greater than <code>o</code>.</li></ul></td>
+</tr>
+<tr>
+<td><code>@Override</code><br><code>public String toString()</code></td>
+<td>Returns a <code>String</code> of the form <code>n/d</code>, where <code=
+>n</code> is the <em>numerator</em> and <code>d</code> is the <em>denominat=
+or</em>.<br>However, if <code>d</code> is <code>1</code>, just return <code=
+>n</code> (as a <code>String</code>).<br> The returned <code>String</code> =
+should not contain any blanks.<br>If the fraction represents a negative num=
+ber, a minus sign should precede <code>n</code>.<br>This should be one of t=
+he first methods you write, because it will help you in debugging.<br>Note =
+that, for the purposes of this assignment, there is no need to implement th=
+e related clone() and hashCode() methods.</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id=3D"toc_8">Notes:</h4>
+
+<ul>
+<li>All <code>Fraction</code>s should be <em>immutable</em>, that is, there=
+ should be no way to change their components=20
+after the numbers have been created. Many of the requested methods simply r=
+eturn a new fraction.</li>
+<li>When you define <code>equals</code>, notice that it requires an <code>O=
+bject</code> as a parameter.=20
+This means that the first thing the method should do is make sure that its =
+parameter is in fact=20
+a <code>Fraction</code>, and return <code>false</code> if it is not.
+
+<ul>
+<li>You can test with <code>o instanceof Fraction</code>.</li>
+<li>You can use <code>o</code> as a <code>Fraction</code> by saying <code>(=
+(Fraction) o)</code>, or you can save it in a <code>Fraction</code>=20
+variable by saying <code>Fraction f =3D (Fraction) o;</code> and then using=
+ <code>f</code>.</li>
+</ul></li>
+<li><p>You can create additional "helper" methods (for example, to compute =
+the GCD, or to normalise a fraction),=20
+if you wish; indeed, <em>we recommend doing so</em>.=20
+If you do, <strong>do not</strong> make these methods <code>public</code>, =
+but <strong>do</strong> test them.</p></li>
+<li><p>To put a fraction into its lowest terms, divide both the numerator a=
+nd the denominator by their=20
+Greatest Common Divisor (GCD); <em>Euclid's algorithm</em> finds the GCD of=
+ two positive integers.=20
+Briefly, it works as follows (please refer to the web for more information =
+if needed): </p>
+
+<ul>
+<li>As long as the two numbers are both nonzero, replace the larger number =
+with the remainder of dividing=20
+the larger by the smaller (this can be done via code having the form <code>=
+larger =3D larger % smaller</code>). </li>
+<li>As soon as one of the numbers is equal to zero, the other number is the=
+ GCD. </li>
+</ul></li>
+</ul>
+
+<h2 id=3D"toc_9">Unit testing</h2>
+
+<p>You must include a JUnit file with unit tests; these should test each of=
+ the methods that you implement in the <code>FractionImpl</code> class.  Th=
+is includes ensuring that the correct exceptions are thrown, when appropria=
+te.</p>
+
+<h2 id=3D"toc_10">Comments</h2>
+
+<p>All methods in your <code>FractionImpl</code> class should have comments=
+. </p>
+
+<p>Where you implement a method from the interface given in Fraction.java (=
+that is, where there is an&nbsp;@Override annotation in the implementation)=
+ you do not need to duplicate the method comments from the interface. If yo=
+u choose to use Javadoc (which is optional), the&nbsp;@inheritDoc annotatio=
+n in the comment block will ensure that the method comments are inherited f=
+rom the interface. You may want to amend or add additional information in y=
+our method headers in FractionImpl.java, for example, information that is s=
+pecific to your implementation.</p>
+
+<p>Any additional methods&nbsp; (such as helper methods) in your implementa=
+tion should be fully documented with a comment header which describes what =
+the method achieves, the parameters (if any), the return value (if any), an=
+d which exceptions the method may throw and under what circumstances.
+ (You may use Javadoc format if you wish, but again, this is not required.)=
+ </p>
+
+<p>Inside methods, you should provide comments.  In general, these should b=
+e high-level comments to aid the reading of your code by someone who is alr=
+eady familiar with Java.  </p>
+
+<h2 id=3D"toc_11">Grading</h2>
+
+<p>Your grade will be based on:</p>
+
+<ul>
+<li>How correct and complete your class is.</li>
+<li>Your comments and general programming style.</li>
+</ul>
+
+<p>We will use our own programs and our own unit tests for grading purposes=
+.  Therefore,=20
+you must adhere to the method names and parameter types shown.</p>
+
+
+
+
+
+
+
+</body></html>
+------MultipartBoundary--hoizyJvZZwzywjZOjYS60QPyr6Wi09cYq4lvF1NgQ9----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-5c9ce6b3-27b9-4d60-b432-9151a8d7392d@mhtml.blink
+
+@charset "utf-8";
+
+body { font-family: Helvetica, arial, sans-serif; font-size: 14px; line-hei=
+ght: 1.6; background-color: white; padding: 30px; }
+
+body > :first-child { margin-top: 0px !important; }
+
+body > :last-child { margin-bottom: 0px !important; }
+
+a { color: rgb(65, 131, 196); }
+
+a.absent { color: rgb(204, 0, 0); }
+
+a.anchor { display: block; padding-left: 30px; margin-left: -30px; cursor: =
+pointer; position: absolute; top: 0px; left: 0px; bottom: 0px; }
+
+h1, h2, h3, h4, h5, h6 { margin: 20px 0px 10px; padding: 0px; font-weight: =
+bold; -webkit-font-smoothing: antialiased; cursor: text; position: relative=
+; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor,=
+ h5:hover a.anchor, h6:hover a.anchor { background: url("data:image/png;bas=
+e64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9=
+iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldC=
+BiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEge=
+G1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDEx=
+IDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM=
+6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZj=
+pEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL=
+3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIg=
+eG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJ=
+lZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS=
+5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlS=
+UQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3Vt=
+ZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU0=
+6RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxOD=
+U4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxM=
+UUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6=
+eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAb=
+AMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0=
+CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg=3D=3D") 10px center no=
+-repeat; text-decoration: none; }
+
+h1 tt, h1 code { font-size: inherit; }
+
+h2 tt, h2 code { font-size: inherit; }
+
+h3 tt, h3 code { font-size: inherit; }
+
+h4 tt, h4 code { font-size: inherit; }
+
+h5 tt, h5 code { font-size: inherit; }
+
+h6 tt, h6 code { font-size: inherit; }
+
+h1 { font-size: 28px; color: black; }
+
+h2 { font-size: 24px; border-bottom: 1px solid rgb(204, 204, 204); color: b=
+lack; }
+
+h3 { font-size: 18px; }
+
+h4 { font-size: 16px; }
+
+h5 { font-size: 14px; }
+
+h6 { color: rgb(119, 119, 119); font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre { margin: 15px 0px; }
+
+hr { background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAA=
+ECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE=
+1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2Voa=
+Uh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6=
+eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzo=
+zMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOT=
+k5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIge=
+G1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0=
+cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9=
+iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYm=
+UgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDR=
+jNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6=
+OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3R=
+SZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OC=
+Igc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyO=
+UY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFj=
+a2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzh=
+kPOlYAAAAAElFTkSuQmCC") 0px 0px repeat-x transparent; border: 0px none; col=
+or: rgb(204, 204, 204); height: 4px; padding: 0px; }
+
+body > h2:first-child { margin-top: 0px; padding-top: 0px; }
+
+body > h1:first-child { margin-top: 0px; padding-top: 0px; }
+
+body > h1:first-child + h2 { margin-top: 0px; padding-top: 0px; }
+
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body >=
+ h6:first-child { margin-top: 0px; padding-top: 0px; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:f=
+irst-child h5, a:first-child h6 { margin-top: 0px; padding-top: 0px; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p { margin-top: 0px; }
+
+li p.first { display: inline-block; }
+
+li { margin: 0px; }
+
+ul, ol { padding-left: 30px; }
+
+ul :first-child, ol :first-child { margin-top: 0px; }
+
+dl { padding: 0px; }
+
+dl dt { font-size: 14px; font-weight: bold; font-style: italic; padding: 0p=
+x; margin: 15px 0px 5px; }
+
+dl dt:first-child { padding: 0px; }
+
+dl dt > :first-child { margin-top: 0px; }
+
+dl dt > :last-child { margin-bottom: 0px; }
+
+dl dd { margin: 0px 0px 15px; padding: 0px 15px; }
+
+dl dd > :first-child { margin-top: 0px; }
+
+dl dd > :last-child { margin-bottom: 0px; }
+
+blockquote { border-left: 4px solid rgb(221, 221, 221); padding: 0px 15px; =
+color: rgb(119, 119, 119); }
+
+blockquote > :first-child { margin-top: 0px; }
+
+blockquote > :last-child { margin-bottom: 0px; }
+
+table { padding: 0px; border-collapse: collapse; }
+
+table tr { border-top: 1px solid rgb(204, 204, 204); background-color: whit=
+e; margin: 0px; padding: 0px; }
+
+table tr:nth-child(2n) { background-color: rgb(248, 248, 248); }
+
+table tr th { font-weight: bold; border: 1px solid rgb(204, 204, 204); marg=
+in: 0px; padding: 6px 13px; }
+
+table tr td { border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6=
+px 13px; }
+
+table tr th :first-child, table tr td :first-child { margin-top: 0px; }
+
+table tr th :last-child, table tr td :last-child { margin-bottom: 0px; }
+
+img { max-width: 100%; }
+
+span.frame { display: block; overflow: hidden; }
+
+span.frame > span { border: 1px solid rgb(221, 221, 221); display: block; f=
+loat: left; overflow: hidden; margin: 13px 0px 0px; padding: 7px; width: au=
+to; }
+
+span.frame span img { display: block; float: left; }
+
+span.frame span span { clear: both; color: rgb(51, 51, 51); display: block;=
+ padding: 5px 0px 0px; }
+
+span.align-center { display: block; overflow: hidden; clear: both; }
+
+span.align-center > span { display: block; overflow: hidden; margin: 13px a=
+uto 0px; text-align: center; }
+
+span.align-center span img { margin: 0px auto; text-align: center; }
+
+span.align-right { display: block; overflow: hidden; clear: both; }
+
+span.align-right > span { display: block; overflow: hidden; margin: 13px 0p=
+x 0px; text-align: right; }
+
+span.align-right span img { margin: 0px; text-align: right; }
+
+span.float-left { display: block; margin-right: 13px; overflow: hidden; flo=
+at: left; }
+
+span.float-left span { margin: 13px 0px 0px; }
+
+span.float-right { display: block; margin-left: 13px; overflow: hidden; flo=
+at: right; }
+
+span.float-right > span { display: block; overflow: hidden; margin: 13px au=
+to 0px; text-align: right; }
+
+code, tt { margin: 0px 2px; padding: 0px 5px; white-space: nowrap; border: =
+1px solid rgb(234, 234, 234); background-color: rgb(248, 248, 248); border-=
+radius: 3px; }
+
+pre code { margin: 0px; padding: 0px; white-space: pre; border: none; backg=
+round: transparent; }
+
+.highlight pre { background-color: rgb(248, 248, 248); border: 1px solid rg=
+b(204, 204, 204); font-size: 13px; line-height: 19px; overflow: auto; paddi=
+ng: 6px 10px; border-radius: 3px; }
+
+pre { background-color: rgb(248, 248, 248); border: 1px solid rgb(204, 204,=
+ 204); font-size: 13px; line-height: 19px; overflow: auto; padding: 6px 10p=
+x; border-radius: 3px; }
+
+pre code, pre tt { background-color: transparent; border: none; }
+
+sup { font-size: 0.83em; vertical-align: super; line-height: 0; }
+
+kbd { display: inline-block; padding: 3px 5px; font-size: 11px; line-height=
+: 10px; color: rgb(85, 85, 85); vertical-align: middle; background-color: r=
+gb(252, 252, 252); border-width: 1px; border-style: solid; border-color: rg=
+b(204, 204, 204) rgb(204, 204, 204) rgb(187, 187, 187); border-image: initi=
+al; border-radius: 3px; box-shadow: rgb(187, 187, 187) 0px -1px 0px inset; =
+}
+
+* { -webkit-print-color-adjust: exact; }
+
+@media screen and (min-width: 914px) {
+  body { width: 854px; margin: 0px auto; }
+}
+
+@media print {
+  table, pre { break-inside: avoid; }
+  pre { overflow-wrap: break-word; }
+  body { padding: 2cm; }
+}
+------MultipartBoundary--hoizyJvZZwzywjZOjYS60QPyr6Wi09cYq4lvF1NgQ9------
